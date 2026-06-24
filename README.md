@@ -105,7 +105,7 @@ return data.response;
 | Return/Refund | "I want to return my product" | Step-by-step guide |
 | Payment Info | "What payment methods?" | Full payment list |
 | Delivery Info | "How long is delivery?" | Delivery times and charges |
-| Price Check | "Price of RTX 4070" | Price with discount |
+| Price Check | "Price of RTX " | Price with discount |
 | Stock Status | "RTX stock" | Stock availability |
 | Help | "What can you do?" | Full command list |
 
