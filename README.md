@@ -1,6 +1,3 @@
-# Techmart-smartbot
-Full-stack AI chatbot using PyTorch for intent classification, Flask for API, SQLite for data, React for UI. Features: product search, order tracking, compatibility checks, tickets. BoW + 3-layer neural net with Cross-Entropy loss.
-
 # TechMart — Smart Computer Hardware E-Commerce Website
 
 ## 🚀 Project Overview
@@ -8,16 +5,61 @@ TechMart is a full-stack computer hardware e-commerce website with an integrated
 
 ---
 
+## 🌐 Live Demo
+**Frontend:** Deploy to Netlify : 
 
 ---
 
+## 📁 Folder Structure
+```
+TchMart-AI/
+├e── src/                       ← React source (builds to pure HTML/CSS/JS)
+│   ├── App.tsx                ← Main HTML template
+│   ├── styles/main.css        ← Complete CSS (1600+ lines)
+│   ├── scripts/
+│   │   ├── database.js        ← Product database (60 products, 13 categories)
+│   │   ├── chatbot.js         ← AI chatbot engine (19 intents, fuzzy matching)
+│   │   └── main.js            ← UI logic (cart, checkout, modals, chatbot UI)
+│   └── utils/cn.ts            ← Tailwind merge utility
+│
+├── backend/                   ← Python Flask + PyTorch backend
+│   ├── app.py                 ← Flask API server
+│   ├── model.py               ← PyTorch Neural Network
+│   ├── train.py               ← Training script
+│   ├── nltk_utils.py          ← NLP utilities (tokenize, stem, bag-of-words)
+│   ├── intents.json           ← Training intents
+│   ├── seed_db.py             ← Database seeder
+│   └── requirements.txt       ← Python dependencies
+│
+├── dist/                      ← Built single-file website (deploy this!)
+├── index.html                 ← Vite entry point
+├── package.json
+├── vite.config.ts
+└── README.md
+```
 
 ---
 
 ## ✨ Features
 
+### 🛒 E-Commerce
+- **Products** across 13 categories 
+- **Product Filtering** — Filter by category with instant results
+- **Search** — Real-time global search across all products
+- **Cart System** — Add, remove, update quantities
+- **Wishlist** — Save products for later
+- **Product Detail Modal** — Full specifications and descriptions
+- **Countdown Deals Timer** — Urgency for limited offers
+- **Brand Carousel** — Auto-scrolling brand logos
+- **Announcement Ticker** — Auto-scrolling promotional bar
 
-
+### 💳 Checkout System
+- **3-Step Checkout** — Review Cart → Payment Method → Confirm Order
+- **Payment Methods** — UPI, Credit/Debit Card, Net Banking, Cash on Delivery
+- **Free Shipping** — On orders above ₹2,999
+- **Order ID Generation** — Unique ID for every order (e.g., TM10045)
+- **Order Tracking** — Track orders in chatbot using Order ID
+- **Order Success Modal** — Confirmation with tracking tip
 
 ### 🤖 AI Chatbot
 - **19 Intents** — Product search, recommend, compare, compatibility, track order, returns, complaint, payment, delivery, warranty, cart/checkout, price inquiry, stock check, offers, greeting, farewell, help, about
@@ -105,7 +147,7 @@ return data.response;
 | Return/Refund | "I want to return my product" | Step-by-step guide |
 | Payment Info | "What payment methods?" | Full payment list |
 | Delivery Info | "How long is delivery?" | Delivery times and charges |
-| Price Check | "Price of RTX " | Price with discount |
+| Price Check | "Price of RTX 4070" | Price with discount |
 | Stock Status | "RTX stock" | Stock availability |
 | Help | "What can you do?" | Full command list |
 

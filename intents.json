@@ -1,0 +1,115 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": ["Hi", "Hello", "Hey", "Good morning", "Good evening", "Howdy", "Namaste", "What's up", "Kem cho!!"],
+      "responses": ["su ke maja","Hello! Welcome to TechMart AI! How can I help you today?", "Hi there! Looking for some great hardware deals?", "Hey! I'm TechMart AI assistant. What can I help you find?"]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", "See you", "Goodbye", "See you later", "Thanks bye"],
+      "responses": ["Goodbye! Come back soon!", "See you later! Happy computing!", "Bye! Feel free to return anytime for hardware needs!"]
+    },
+    {
+      "tag": "product_search",
+      "patterns": [
+        "Show me laptops", "Find GPU", "Show CPUs", "Search graphics card",
+        "Available SSDs", "Show gaming laptops", "List RAM options",
+        "Show RTX graphics cards", "Find laptop under budget",
+        "Gaming laptop", "Show all keyboards"
+      ],
+      "responses": ["Searching our database for you...", "Let me find the best products for you!", "Looking through our inventory..."]
+    },
+    {
+      "tag": "recommend",
+      "patterns": [
+        "Recommend a laptop", "Suggest GPU for gaming", "Best CPU for gaming",
+        "What laptop should I buy", "Best SSD for students",
+        "Which graphics card is best", "Recommend PC for programming",
+        "Best laptop for video editing", "Which mouse is best for gaming"
+      ],
+      "responses": ["I'll analyze your requirements and recommend the best options!", "Let me suggest some excellent choices for you!"]
+    },
+    {
+      "tag": "compare",
+      "patterns": [
+        "Compare RTX 4060 and RTX 5060", "RTX vs RX", "Ryzen vs Intel",
+        "Compare CPUs", "Which is better GPU", "Difference between",
+        "i5 vs i7", "Ryzen 5 vs Ryzen 7", "Compare laptops"
+      ],
+      "responses": ["Let me compare those for you!", "Here's a detailed comparison..."]
+    },
+    {
+      "tag": "compatibility",
+      "patterns": [
+        "Is this compatible", "Will it work with", "Compatible motherboard",
+        "Ryzen compatible B650", "Intel LGA1700", "DDR5 compatible",
+        "Which RAM works with my board", "Can I use this CPU"
+      ],
+      "responses": ["Let me check compatibility for you!", "Checking our compatibility database..."]
+    },
+    {
+      "tag": "track_order",
+      "patterns": [
+        "Track my order", "Where is my order", "Order status", "When will it arrive",
+        "Delivery status", "My package", "Order tracking", "Shipped yet"
+      ],
+      "responses": ["Let me look up your order!", "Please provide your order ID to track your package."]
+    },
+    {
+      "tag": "return_refund",
+      "patterns": [
+        "I want to return", "How do I return", "Refund request", "Can I get refund",
+        "Return policy", "Return product", "Get my money back", "Exchange product"
+      ],
+      "responses": ["I can help you with returns! Our 7-day return policy makes it easy.", "Let me guide you through the return process."]
+    },
+    {
+      "tag": "complaint",
+      "patterns": [
+        "My keyboard is not working", "Received damaged product", "Product broken",
+        "Wrong item delivered", "Dead on arrival", "Defective product",
+        "Problem with my order", "Issue with product", "Not functioning"
+      ],
+      "responses": ["I'm sorry to hear that! Let me create a support ticket for you.", "I'll escalate this to our support team immediately!"]
+    },
+    {
+      "tag": "payment",
+      "patterns": [
+        "Payment methods", "Can I pay with UPI", "Credit card accepted",
+        "EMI available", "Cash on delivery", "How to pay", "Payment options",
+        "Do you accept Paytm", "Net banking"
+      ],
+      "responses": ["We accept UPI, Cards, Net Banking, EMI, and COD!", "Multiple payment options available for your convenience!"]
+    },
+    {
+      "tag": "delivery",
+      "patterns": [
+        "How long delivery", "Shipping time", "When will I get", "Delivery charges",
+        "Free shipping", "Fast delivery", "Express shipping", "Same day delivery"
+      ],
+      "responses": ["Standard delivery takes 3-5 business days. Express available!", "Free shipping on orders above ₹2999!"]
+    },
+    {
+      "tag": "warranty",
+      "patterns": [
+        "Warranty information", "How long warranty", "Product guarantee",
+        "Service center", "Warranty claim", "Warranty period"
+      ],
+      "responses": ["All products come with manufacturer warranty. CPUs/GPUs: 3 years, RAM: Lifetime, SSDs: 3-5 years!"]
+    },
+    {
+      "tag": "about",
+      "patterns": [
+        "About TechMart", "Who are you", "Tell me about your store",
+        "Contact information", "Your address", "Email support"
+      ],
+      "responses": ["TechMart AI is India's leading online computer hardware store in Bengaluru! Contact: support@techmart.ai | +91 98765 43210"]
+    },
+    {
+      "tag": "general",
+      "patterns": ["Help", "What can you do", "Options", "Menu", "Help karjo"],
+      "responses": ["I can help with product search, recommendations, comparisons, order tracking, returns, and more! Just ask!"]
+    }
+  ]
+}
