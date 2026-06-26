@@ -1,7 +1,7 @@
 """
 TechMart AI - Training Script
 Trains the PyTorch NLP model on intents.json
-Run: python train.py
+Run: python train.py to train the model 
 """
 
 import json
@@ -48,7 +48,7 @@ for (pattern_sentence, tag) in xy:
     label = tags.index(tag)
     y_train.append(label)
 
-X_train = np.array(X_train)
+X_train = np.array(X_train) # We have to store
 y_train = np.array(y_train)
 
 
@@ -111,5 +111,5 @@ data = {
     "all_words": all_words,
     "tags": tags
 }
-torch.save(data, "data.pth")
+torch.save(data, "data.pth") #Trained model will be saved as data.pth which will be used in 
 print("Training complete. Model saved to data.pth")
