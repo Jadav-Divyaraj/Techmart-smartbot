@@ -1,5 +1,5 @@
 """
-TechMart AI - Flask Backend
+TechMart ChatBot - Flask Backend
 Integrates PyTorch NLP chatbot with SQLite database
 Run: python app.py
 """
@@ -7,7 +7,7 @@ Run: python app.py
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import json
-import sqlite3
+import sqlite3 #I had used the 
 import datetime
 import random
 import torch
@@ -25,7 +25,7 @@ with open('intents.json', 'r') as f:
     intents = json.load(f)
 
 FILE = "data.pth"
-data = torch.load(FILE)
+data = torch.load(FILE) #Here we load the trained model in trained.py
 
 input_size = data["input_size"]
 hidden_size = data["hidden_size"]
@@ -183,7 +183,7 @@ def action_router(intent, msg, entities):
         return {'type': 'ticket_form'}
 
     else:
-        # Use PyTorch intents.json response
+        # Use PyTorch intents.json response  ------  I 
         for intent_obj in intents['intents']:
             if intent_obj['tag'] == intent:
                 response = random.choice(intent_obj['responses'])
