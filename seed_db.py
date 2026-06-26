@@ -58,6 +58,7 @@ PRODUCTS = [
     ('Acer Nitro 5 (Ryzen 5)', 'laptop', 'Acer', 54999, 65999, '{"CPU":"Ryzen 5 7535HS","GPU":"RTX 3050","RAM":"8GB DDR5","Storage":"512GB","Display":"15.6\" 144Hz"}', 'In Stock', 4.5, 2876, 'sale', '💼'),
 ]
 
+#Sample Names used for ChatBot 
 ORDERS = [
     ('TM10045', 'Rahul Sharma', 'NVIDIA RTX 4060', 'Delivered', 'FEDEX9834723', '2025-07-01', 29999),
     ('TM10046', 'Priya Patel', 'AMD Ryzen 7 7700X', 'Out for Delivery', 'DTDC8723461', '2025-07-05', 29999),
