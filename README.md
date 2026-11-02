@@ -5,7 +5,7 @@
 ![TechMart Banner](https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&h=350&q=80)
 
 [![Vite](https://img.shields.io/badge/Vite-7.3-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![React](https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![HTML](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9I9gawgLUYATHUojgpstEa6NFQetSGmu8SomZ_G439A&s=10)]
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.1-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![Flask](https://img.shields.io/badge/Flask-3.0-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
@@ -22,9 +22,9 @@
 
 ## 📌 Project Overview
 
-**TechMart AI** is a full-stack, domain-specific e-commerce platform tailored for computer hardware enthusiasts, PC builders, and students. Unlike typical e-commerce storefronts that rely solely on basic keyword search, TechMart integrates a **custom PyTorch-trained neural network chatbot** and a **hybrid client-server NLP router** capable of answering complex inquiries, verifying CPU-motherboard hardware compatibility, performing side-by-side spec comparisons, tracking orders in real-time, and raising support tickets.
+**TechMart AI** is a full-stack, domain-specific e-commerce platform tailored for computer hardware enthusiasts, PC builders, and students. Unlike typical e-commerce storefronts that rely solely on basic keyword search, TechMart integrates a **custom PyTorch-trained neural network chatbot** and a **hybrid client-server NLP router** capable of answering simle customer queries, verifying CPU-motherboard hardware compatibility, performing side-by-side spec comparisons, tracking orders in real-time, and raising support tickets.
 
-Built as a capstone diploma engineering project, it demonstrates the seamless bridge between **Modern Web Engineering (React, Vite, CSS Grid)** and **Machine Learning & Applied NLP (PyTorch, NLTK, Bag-of-Words, Feedforward Neural Networks)**.
+Built as a capstone diploma engineering project, it demonstrates the seamless bridge between **Modern Web Engineering (HTML, Vite, CSS Grid)** and **Machine Learning & Applied NLP (PyTorch, NLTK, Bag-of-Words, Feedforward Neural Networks)**.
 
 ---
 
