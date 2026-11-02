@@ -5,6 +5,11 @@ Run: python train.py to train the model
 """
 
 import json
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+INTENTS_PATH = os.path.join(BASE_DIR, 'intents.json')
+MODEL_PATH = os.path.join(BASE_DIR, 'data.pth')
 import numpy as np
 import torch
 import torch.nn as nn
@@ -13,7 +18,7 @@ from nltk_utils import bag_of_words, tokenize, stem
 from model import NeuralNet
 
 # Load intents
-with open('intents.json', 'r') as f:
+with open(INTENTS_PATH, 'r') as f:
     intents = json.load(f)
 
 all_words = []
@@ -111,5 +116,5 @@ data = {
     "all_words": all_words,
     "tags": tags
 }
-torch.save(data, "data.pth") #Trained model will be saved as data.pth which will be used in 
+torch.save(data, MODEL_PATH) #Trained model will be saved as data.pth which will be used in 
 print("Training complete. Model saved to data.pth")

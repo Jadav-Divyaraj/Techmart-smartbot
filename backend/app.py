@@ -6,6 +6,13 @@ Run: python app.py
 
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+INTENTS_PATH = os.path.join(BASE_DIR, 'intents.json')
+MODEL_PATH = os.path.join(BASE_DIR, 'data.pth')
+DB_PATH = os.path.join(BASE_DIR, 'techmart.db')
+STATIC_DIR = os.path.abspath(os.path.join(BASE_DIR, '..', 'dist'))
 import json
 import sqlite3 #I had used the 
 import datetime
@@ -15,16 +22,16 @@ import numpy as np
 from model import NeuralNet
 from nltk_utils import bag_of_words, tokenize
 
-app = Flask(__name__, static_folder='..', static_url_path='')
+app = Flask(__name__, static_folder=STATIC_DIR if os.path.exists(STATIC_DIR) else os.path.abspath(os.path.join(BASE_DIR, '..')), static_url_path='')
 CORS(app)
 
 # ===== LOAD PYTORCH MODEL =====
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-with open('intents.json', 'r') as f:
+with open(INTENTS_PATH, 'r') as f:
     intents = json.load(f)
 
-FILE = "data.pth"
+FILE = MODEL_PATH
 data = torch.load(FILE) #Here we load the trained model in trained.py
 
 input_size = data["input_size"]
@@ -40,7 +47,7 @@ model.eval()
 
 # ===== DATABASE =====
 def get_db():
-    conn = sqlite3.connect('techmart.db')
+    conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -165,9 +172,25 @@ def action_router(intent, msg, entities):
             params.append(entities['max_price'])
         query += " LIMIT 5"
         cursor = conn.execute(query, params)
-        products = [dict(row) for row in cursor.fetchall()]
+        raw_products = [dict(row) for row in cursor.fetchall()]
         conn.close()
-        return {'type': 'products', 'data': products}
+
+        formatted_prods = []
+        for p in raw_products:
+            p_copy = dict(p)
+            try:
+                p_copy['specs'] = json.loads(p.get('specifications') or '{}')
+            except Exception:
+                p_copy['specs'] = {}
+            p_copy['img'] = ''
+            formatted_prods.append(p_copy)
+
+        return {
+            'type': 'products',
+            'intro': f"Found {len(formatted_prods)} product{'s' if len(formatted_prods) != 1 else ''} matching your query:",
+            'products': formatted_prods,
+            'data': raw_products
+        }
 
     elif intent == 'track_order':
         if 'order_id' in entities:
@@ -175,22 +198,47 @@ def action_router(intent, msg, entities):
             order = cursor.fetchone()
             conn.close()
             if order:
-                return {'type': 'order_status', 'data': dict(order)}
+                order_dict = dict(order)
+                status = order_dict.get('status', 'Processing')
+                steps = 4 if status == 'Delivered' else 3 if status == 'Out for Delivery' else 2 if status == 'Shipped' else 1
+                color = 'text-success' if status == 'Delivered' else 'text-warning'
+                return {
+                    'type': 'order_status',
+                    'order': {
+                        'orderId': order_dict.get('order_id'),
+                        'customer': order_dict.get('customer_name', ''),
+                        'product': order_dict.get('product_name', ''),
+                        'status': status,
+                        'trackingNo': order_dict.get('tracking_number', 'N/A'),
+                        'orderDate': order_dict.get('order_date', '')
+                    },
+                    'info': {
+                        'icon': '📦',
+                        'steps': steps,
+                        'color': color
+                    },
+                    'data': order_dict
+                }
         conn.close()
-        return {'type': 'order_form'}
+        return {'type': 'order_form', 'content': 'Please enter your order ID (e.g. TM10045) to track your delivery status:'}
 
     elif intent == 'complaint':
+        conn.close()
         return {'type': 'ticket_form'}
 
     else:
-        # Use PyTorch intents.json response  ------  I 
+        # Use PyTorch intents.json response
         for intent_obj in intents['intents']:
             if intent_obj['tag'] == intent:
                 response = random.choice(intent_obj['responses'])
                 conn.close()
-                return {'type': 'text', 'data': response}
+                return {'type': 'text', 'content': response, 'data': response}
         conn.close()
-        return {'type': 'text', 'data': "I'm here to help! Ask me about products, orders, or support."}
+        return {
+            'type': 'text',
+            'content': "I'm here to help! Ask me about products, PC hardware compatibility, order tracking, or support tickets.",
+            'data': "I'm here to help!"
+        }
 
 # ===== API ROUTES =====
 

@@ -943,11 +943,33 @@ What would you like help with?`
 
 // ===== MAIN CHAT PROCESSOR =====
 export async function processMessage(msg) {
+  // 1. Try querying Flask PyTorch backend if server is active
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 1800);
+    const apiRes = await fetch('http://localhost:5000/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: msg }),
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+    if (apiRes.ok) {
+      const data = await apiRes.json();
+      if (data && data.response) {
+        return data.response;
+      }
+    }
+  } catch (err) {
+    // Backend offline or running in standalone mode: graceful fallback to client-side engine
+  }
+
+  // 2. Standalone Client-side NLP Engine Fallback
   const intent = classifyIntent(msg);
   const entities = extractEntities(msg);
 
-  // Simulate network delay (as if calling Flask backend)
-  await new Promise(r => setTimeout(r, 600 + Math.random() * 600));
+  // Simulate realistic network delay
+  await new Promise(r => setTimeout(r, 400 + Math.random() * 400));
 
   switch (intent) {
     case 'product_search': return handleProductSearch(msg, entities);

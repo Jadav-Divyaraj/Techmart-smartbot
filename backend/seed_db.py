@@ -7,6 +7,10 @@ Run: python seed_db.py
 import sqlite3
 import json
 import datetime
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, 'techmart.db')
 
 PRODUCTS = [
     # CPUs
@@ -68,7 +72,7 @@ ORDERS = [
 ]
 
 def seed():
-    conn = sqlite3.connect('techmart.db')
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     # Create tables if they don't exist
